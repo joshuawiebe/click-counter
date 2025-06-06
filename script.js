@@ -17,7 +17,7 @@ counterButton.addEventListener('click', () => {
 resetButton.addEventListener('click', () => {
     counter = 0;
     displayCounter.textContent = '00';
-    displayCounter.style.color = 'black'; // Reset color
+    displayCounter.style.color = 'white'; // Reset color
 });
 
 document.addEventListener('keydown', (event) => {
@@ -37,8 +37,6 @@ document.addEventListener('keydown', (event) => {
         displayCounter.style.color = 'black'; // Reset color
     }
     if (event.code === 'KeyD') {
-        document.body.classList.toggle('dark-mode');
-        document.body.style.backgroundColor = document.body.classList.contains('dark-mode') ? '#333' : '#fff';
-        document.body.style.color = document.body.classList.contains('dark-mode') ? '#fff' : '#000';
+        alert('Darkmode will be implemented soon!');
     }
 });
