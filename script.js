@@ -37,6 +37,6 @@ document.addEventListener('keydown', (event) => {
         displayCounter.style.color = 'black'; // Reset color
     }
     if (event.code === 'KeyD') {
-        alert('Darkmode will be implemented soon!');
+        document.body.classList.toggle('darkmode');
     }
 });
