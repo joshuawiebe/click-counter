@@ -36,7 +36,7 @@ document.addEventListener('keydown', (event) => {
         displayCounter.textContent = '00';
         displayCounter.style.color = 'black'; // Reset color
     }
-    if (event.code === 'KeyD') {
+    if (event.key.toLowerCase() === 'd') {
         document.body.classList.toggle('darkmode');
     }
 });
