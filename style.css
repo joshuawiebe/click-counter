@@ -138,3 +138,210 @@ body.darkmode #resetButton:hover {
     color: #222;
     border: 2px solid #00c6ff;
 }
+
+/* Settings button */
+#settingsButton {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1001;
+    transition: background 0.2s;
+}
+#settingsButton:hover {
+    background: #f0f0f0;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1002;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.25);
+    align-items: center;
+    justify-content: center;
+}
+.modal.open {
+    display: flex;
+}
+.modal-content {
+    background: #fff;
+    padding: 32px 40px 24px 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 340px;
+    max-width: 95vw;
+}
+#closeModal {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+#closeModal:hover {
+    color: #007bff;
+}
+
+/* --- Improved Uiverse Toggle for Modal --- */
+#settingsModal .toggle-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  width: 100%;
+  padding: 0;
+}
+
+#settingsModal .toggle-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  width: 100%;
+  padding: 0;
+}
+
+#settingsModal .toggle-circle {
+  position: relative;
+  border-radius: 100%;
+  width: 5rem;
+  height: 5rem;
+  background: linear-gradient(40deg, #FF0080,#FF8C00 70%);
+  margin: 0 auto 1rem auto;
+  transition: background 0.3s;
+}
+
+#settingsModal .toggle-crescent {
+  position: absolute;
+  border-radius: 100%;
+  right: 0;
+  width: 3.5rem;
+  height: 3.5rem;
+  background: #fff;
+  transform: scale(0);
+  transform-origin: top right;
+  transition: transform .6s cubic-bezier(0.645, 0.045, 0.355, 1), background 0.3s;
+}
+
+#settingsModal .toggle-label {
+  width: 100%;
+  background-color: rgba(0,0,0,.08);
+  border-radius: 100px;
+  position: relative;
+  margin: 0.8rem 0 0.5rem 0;
+  cursor: pointer;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#settingsModal .toggle-slider {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  height: 2.2rem;
+  background: #fff;
+  border-radius: 100px;
+  box-shadow: 0 2px 15px rgba(0,0,0,.15);
+  transition: transform .3s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.3s;
+}
+
+#settingsModal .toggle-names {
+  font-size: 1em;
+  font-weight: bold;
+  color: #222;
+  width: 65%;
+  margin-left: 17.5%;
+  margin-top: 0.2rem;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  user-select: none;
+  pointer-events: none;
+}
+
+#settingsModal .toggle-names .dark {
+  opacity: .5;
+  transition: opacity 0.3s, color 0.3s;
+}
+#settingsModal .toggle-names .light {
+  opacity: 1;
+  transition: opacity 0.3s, color 0.3s;
+}
+
+/* Hide the native checkbox */
+#uiverseSwitch {
+  display: none;
+}
+
+/* Toggle checked state */
+#uiverseSwitch:checked + .toggle-app .toggle-slider {
+  transform: translateX(100%);
+  background: #34323D;
+}
+#uiverseSwitch:checked + .toggle-app .toggle-names .dark {
+  opacity: 1;
+  color: #fff;
+}
+#uiverseSwitch:checked + .toggle-app .toggle-names .light {
+  opacity: .5;
+  color: #fff;
+}
+#uiverseSwitch:checked + .toggle-app .toggle-circle {
+  background: linear-gradient(40deg, #8983F7, #A3DAFB 70%);
+}
+#uiverseSwitch:checked + .toggle-app .toggle-crescent {
+  transform: scale(1);
+  background: #23272f;
+}
+
+/* Modal color adaptation */
+#settingsModal .modal-content {
+  background: #fff;
+  color: #222;
+}
+body.darkmode #settingsModal .modal-content {
+  background: #23272f;
+  color: #fff;
+}
+#settingsModal .toggle-names {
+  color: inherit;
+}
+
+/* Hide unused elements (if any remain in DOM) */
+#settingsModal .menu,
+#settingsModal .icons,
+#settingsModal .battery,
+#settingsModal .network,
+#settingsModal .time {
+  display: none !important;
+}
+body.darkmode #settingsButton {
+    background: #23272f;
+    color: #fff;
+}
+body.darkmode #settingsButton:hover {
+    background: #34323D;
+}

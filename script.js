@@ -40,3 +40,29 @@ document.addEventListener('keydown', (event) => {
         document.body.classList.toggle('darkmode');
     }
 });
+
+// Settings modal logic
+const settingsButton = document.getElementById('settingsButton');
+const settingsModal = document.getElementById('settingsModal');
+const closeModal = document.getElementById('closeModal');
+const uiverseSwitch = document.getElementById('uiverseSwitch');
+
+// Open modal
+settingsButton.addEventListener('click', () => {
+    settingsModal.classList.add('open');
+    // Sync toggle with current dark mode
+    uiverseSwitch.checked = document.body.classList.contains('darkmode');
+});
+
+// Close modal
+closeModal.addEventListener('click', () => {
+    settingsModal.classList.remove('open');
+});
+settingsModal.addEventListener('click', (e) => {
+    if (e.target === settingsModal) settingsModal.classList.remove('open');
+});
+
+// Toggle dark mode from Uiverse switch
+uiverseSwitch.addEventListener('change', (e) => {
+    document.body.classList.toggle('darkmode', e.target.checked);
+});
