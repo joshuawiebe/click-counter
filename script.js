@@ -30,6 +30,7 @@ resetButton.addEventListener('click', () => {
 // Keyboard events
 document.addEventListener('keydown', (event) => {
     if (event.code === 'Space') {
+        event.preventDefault(); // Prevent page scroll on space
         counter++;
         updateCounterDisplay();
     }
