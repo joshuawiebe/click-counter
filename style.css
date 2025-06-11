@@ -1,336 +1,216 @@
+/* ===========================
+   Base Styles
+   =========================== */
 body {
-    font-family: Arial, sans-serif;
-    background: #fff;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #111;
-    transition: background 0.3s, color 0.3s;
-}
-
-.container {
-    background-color: rgba(0, 0, 0, 0.05);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
-    margin-bottom: 20px;
-    width: 50%;
-    height: 50%;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.clicker {
-    background: rgba(255, 255, 255, 0.97);
-    padding: 32px 24px 24px 24px;
-    border-radius: 18px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-    width: 320px;
-    height: 340px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    position: relative;
-}
-
-#counter {
-    font-size: 4em;
-    margin-bottom: 32px;
-    margin-top: 0;
-    letter-spacing: 2px;
-    font-weight: bold;
-    color: #222;
-    transition: color 0.3s;
-}
-
-#clickButton {
-    width: 80%;
-    margin-bottom: 16px;
-    font-size: 1.2em;
-    padding: 14px 0;
-    border-radius: 10px;
-    background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
-    color: #fff;
-    border: none;
-    box-shadow: 0 4px 16px rgba(0,123,255,0.08);
-    font-weight: 600;
-    letter-spacing: 1px;
-    transition: background 0.2s, transform 0.1s;
-}
-#clickButton:hover {
-    background: linear-gradient(90deg, #0056b3 0%, #00aaff 100%);
-    transform: scale(1.03);
-}
-
-#resetButton {
-    position: absolute;
-    bottom: 18px;
-    right: 18px;
-    background: #fff;
-    color: #007bff;
-    border: 2px solid #e0e0e0;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    transition: background 0.2s, color 0.2s, border 0.2s;
-    padding: 0;
-}
-#resetButton:hover {
-    background: #007bff;
-    color: #fff;
-    border: 2px solid #007bff;
-}
-#resetButton svg {
-    width: 24px;
-    height: 24px;
-    vertical-align: middle;
-    pointer-events: none;
-}
-
-h1 {
-    color: #111;
-    font-size: 3em;
-    margin: 0 0 30px 0;
-    letter-spacing: 2px;
-    transition: color 0.3s;
-}
-
-/* Dark mode */
-body.darkmode {
-    background: #181c24;
-    color: #f5f5f5;
-}
-body.darkmode .clicker {
-    background: rgba(30, 30, 30, 0.98);
-    box-shadow: 0 0 45px rgb(1, 78, 120);
-}
-body.darkmode #counter {
-    color: #fff;
-}
-body.darkmode #clickButton {
-    background: linear-gradient(90deg, #222 0%, #444 100%);
-    color: #fff;
-}
-body.darkmode #clickButton:hover {
-    background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
-}
-body.darkmode #resetButton {
-    background: #222;
-    color: #00c6ff;
-    border: 2px solid #333;
-}
-body.darkmode #resetButton:hover {
-    background: #00c6ff;
-    color: #222;
-    border: 2px solid #00c6ff;
-}
-
-/* Settings button */
-#settingsButton {
-    position: fixed;
-    top: 24px;
-    right: 24px;
-    background: #fff;
-    border: none;
-    border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1001;
-    transition: background 0.2s;
-}
-#settingsButton:hover {
-    background: #f0f0f0;
-}
-
-/* Modal styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1002;
-    left: 0; top: 0;
-    width: 100vw; height: 100vh;
-    background: rgba(0,0,0,0.25);
-    align-items: center;
-    justify-content: center;
-}
-.modal.open {
-    display: flex;
-}
-.modal-content {
-    background: #fff;
-    padding: 32px 40px 24px 40px;
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 340px;
-    max-width: 95vw;
-}
-#closeModal {
-    position: absolute;
-    top: 12px;
-    right: 16px;
-    background: none;
-    border: none;
-    font-size: 2em;
-    color: #888;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-#closeModal:hover {
-    color: #007bff;
-}
-
-/* --- Improved Uiverse Toggle for Modal --- */
-#settingsModal .toggle-app {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: transparent;
-  width: 100%;
-  padding: 0;
-}
-
-#settingsModal .toggle-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: transparent;
-  width: 100%;
-  padding: 0;
-}
-
-#settingsModal .toggle-circle {
-  position: relative;
-  border-radius: 100%;
-  width: 5rem;
-  height: 5rem;
-  background: linear-gradient(40deg, #FF0080,#FF8C00 70%);
-  margin: 0 auto 1rem auto;
-  transition: background 0.3s;
-}
-
-#settingsModal .toggle-crescent {
-  position: absolute;
-  border-radius: 100%;
-  right: 0;
-  width: 3.5rem;
-  height: 3.5rem;
+  font-family: Arial, sans-serif;
   background: #fff;
-  transform: scale(0);
-  transform-origin: top right;
-  transition: transform .6s cubic-bezier(0.645, 0.045, 0.355, 1), background 0.3s;
-}
-
-#settingsModal .toggle-label {
-  width: 100%;
-  background-color: rgba(0,0,0,.08);
-  border-radius: 100px;
-  position: relative;
-  margin: 0.8rem 0 0.5rem 0;
-  cursor: pointer;
-  height: 2.2rem;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #111;
+  transition: background 0.3s, color 0.3s;
 }
 
-#settingsModal .toggle-slider {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 50%;
-  height: 2.2rem;
-  background: #fff;
-  border-radius: 100px;
-  box-shadow: 0 2px 15px rgba(0,0,0,.15);
-  transition: transform .3s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.3s;
+/* ===========================
+   Clicker UI
+   =========================== */
+.clicker {
+  background: rgba(255, 255, 255, 0.97);
+  padding: 32px 24px 24px 24px;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  width: 320px;
+  height: 260px; /* Changed from 340px to 260px for a cleaner look */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
 }
 
-#settingsModal .toggle-names {
-  font-size: 1em;
+#counter {
+  font-size: 4em;
+  margin-bottom: 32px;
+  margin-top: 0;
+  letter-spacing: 2px;
   font-weight: bold;
   color: #222;
-  width: 65%;
-  margin-left: 17.5%;
-  margin-top: 0.2rem;
+  transition: color 0.3s;
+}
+
+#clickButton {
+  width: 80%;
+  margin-bottom: 16px;
+  font-size: 1.2em;
+  padding: 14px 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 16px rgba(0,123,255,0.08);
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: background 0.2s, transform 0.1s;
+}
+#clickButton:hover {
+  background: linear-gradient(90deg, #0056b3 0%, #00aaff 100%);
+  transform: scale(1.03);
+}
+
+#resetButton {
   position: absolute;
+  bottom: 18px;
+  right: 18px;
+  background: #fff;
+  color: #007bff;
+  border: 2px solid #e0e0e0;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
   display: flex;
-  justify-content: space-between;
-  user-select: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  padding: 0;
+}
+#resetButton:hover {
+  background: #007bff;
+  color: #fff;
+  border: 2px solid #007bff;
+}
+#resetButton svg {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
   pointer-events: none;
 }
 
-#settingsModal .toggle-names .dark {
-  opacity: .5;
-  transition: opacity 0.3s, color 0.3s;
-}
-#settingsModal .toggle-names .light {
-  opacity: 1;
-  transition: opacity 0.3s, color 0.3s;
-}
-
-/* Hide the native checkbox */
-#uiverseSwitch {
-  display: none;
+/* ===========================
+   Headings
+   =========================== */
+h1 {
+  color: #111;
+  font-size: 3em;
+  margin: 0 0 30px 0;
+  letter-spacing: 2px;
+  transition: color 0.3s;
 }
 
-/* Toggle checked state */
-#uiverseSwitch:checked + .toggle-app .toggle-slider {
-  transform: translateX(100%);
+/* ===========================
+   Dark Mode
+   =========================== */
+body.darkmode {
+  background: #181c24;
+  color: #f5f5f5;
+}
+body.darkmode .clicker {
+  background: rgba(30, 30, 30, 0.98);
+  box-shadow: 0 0 45px rgb(1, 78, 120);
+}
+body.darkmode #counter {
+  color: #fff;
+}
+body.darkmode #clickButton {
+  background: linear-gradient(90deg, #222 0%, #444 100%);
+  color: #fff;
+}
+body.darkmode #clickButton:hover {
+  background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+}
+body.darkmode #resetButton {
+  background: #222;
+  color: #00c6ff;
+  border: 2px solid #333;
+}
+body.darkmode #resetButton:hover {
+  background: #00c6ff;
+  color: #222;
+  border: 2px solid #00c6ff;
+}
+body.darkmode #settingsButton {
+  background: #23272f;
+  color: #fff;
+}
+body.darkmode #settingsButton:hover {
   background: #34323D;
 }
-#uiverseSwitch:checked + .toggle-app .toggle-names .dark {
-  opacity: 1;
-  color: #fff;
+
+/* ===========================
+   Settings Button
+   =========================== */
+#settingsButton {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1001;
+  transition: background 0.2s;
 }
-#uiverseSwitch:checked + .toggle-app .toggle-names .light {
-  opacity: .5;
-  color: #fff;
-}
-#uiverseSwitch:checked + .toggle-app .toggle-circle {
-  background: linear-gradient(40deg, #8983F7, #A3DAFB 70%);
-}
-#uiverseSwitch:checked + .toggle-app .toggle-crescent {
-  transform: scale(1);
-  background: #23272f;
+#settingsButton:hover {
+  background: #f0f0f0;
 }
 
-/* Modal color adaptation */
-#settingsModal .modal-content {
+/* ===========================
+   Modal Styles
+   =========================== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1002;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.25);
+  align-items: center;
+  justify-content: center;
+}
+.modal.open {
+  display: flex;
+}
+.modal-content {
   background: #fff;
-  color: #222;
+  padding: 32px 40px 24px 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 340px;
+  max-width: 95vw;
+}
+#closeModal {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+#closeModal:hover {
+  color: #007bff;
 }
 body.darkmode #settingsModal .modal-content {
   background: #23272f;
   color: #fff;
 }
-#settingsModal .toggle-names {
-  color: inherit;
-}
 
-/* Hide unused elements (if any remain in DOM) */
+/* Hide unused modal elements */
 #settingsModal .menu,
 #settingsModal .icons,
 #settingsModal .battery,
@@ -338,10 +218,48 @@ body.darkmode #settingsModal .modal-content {
 #settingsModal .time {
   display: none !important;
 }
-body.darkmode #settingsButton {
-    background: #23272f;
-    color: #fff;
-}
-body.darkmode #settingsButton:hover {
-    background: #34323D;
+
+/* ===========================
+   Uiverse Toggle Styles
+   =========================== */
+.app { width: 100%; }
+.body { width: 100%; }
+.phone { width: 18rem; height: 17rem; background: inherit; border-radius: 40px; display: flex; flex-direction: column; }
+.content { display: flex; flex-direction: column; margin: auto; text-align: center; width: 70%; transform: translateY(5%); }
+.circle { position: relative; border-radius: 100%; width: 8rem; height: 8rem; background: linear-gradient(40deg, #ff0080, #ff8c00, #e8e8e8, #8983f7, #a3dafb 80%); background-size: 400%; transition: background-position 0.6s; margin: auto; }
+.crescent { position: absolute; border-radius: 100%; right: 0; width: 6rem; height: 6rem; background: #e8e8e8; transform: scale(0); transform-origin: top right; transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0.6s; }
+label, .toggle { height: 2.8rem; border-radius: 100px; }
+label { width: 100%; background-color: rgba(0, 0, 0, 0.1); border-radius: 100px; position: relative; margin: 1.8rem 0 4rem 0; cursor: pointer; }
+.toggle { position: absolute; width: 50%; background-color: #fff; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15); transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.names { font-size: 90%; font-weight: bolder; color: black; width: 65%; margin-left: 17.5%; margin-top: 6.5%; position: absolute; display: flex; justify-content: space-between; user-select: none; }
+.dark { opacity: 0.5; }
+.light { opacity: 1; }
+[type="checkbox"] { display: none; }
+[type="checkbox"]:checked + .app .toggle { transform: translateX(100%); background-color: #34323d; }
+[type="checkbox"]:checked + .app .dark { opacity: 1; color: white; }
+[type="checkbox"]:checked + .app .light { opacity: 1; color: white; }
+[type="checkbox"]:checked + .app .phone { background-color: #26242e; color: white; }
+[type="checkbox"]:checked + .app .crescent { transform: scale(1); background: #26242e; }
+[type="checkbox"]:checked + .app .circle { background-position: 100% 100%; }
+[type="checkbox"]:checked + .app .main-circle { background: linear-gradient(40deg, #8983f7, #a3dafb 70%); }
+[type="checkbox"]:checked + .time { color: white; }
+[type="checkbox"]:checked + .app .body .phone .menu .time { color: white; }
+[type="checkbox"]:checked + .app .body .phone .menu .icons .network { border-color: transparent transparent white transparent; }
+[type="checkbox"]:checked + .app .body .phone .menu .icons .battery { background-color: white; }
+[type="checkbox"]:checked + .app .body { border-radius: 40px; }
+
+.menu {
+  /*   background-color: blue; */
+  font-size: 80%;
+  opacity: 0.4;
+  padding: 0.8rem 1.8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }

@@ -3,8 +3,8 @@ const displayCounter = document.getElementById('counter');
 const counterButton = document.getElementById('clickButton');
 const resetButton = document.getElementById('resetButton');
 
-counterButton.addEventListener('click', () => {
-    counter++;
+// Update counter display
+function updateCounterDisplay() {
     if (counter < 10) {
         displayCounter.textContent = '0' + counter;
         displayCounter.style.color = 'red';
@@ -12,34 +12,46 @@ counterButton.addEventListener('click', () => {
         displayCounter.textContent = counter;
         displayCounter.style.color = 'green';
     }
+}
+
+// Click event
+counterButton.addEventListener('click', () => {
+    counter++;
+    updateCounterDisplay();
 });
 
+// Reset event
 resetButton.addEventListener('click', () => {
     counter = 0;
     displayCounter.textContent = '00';
-    displayCounter.style.color = 'white'; // Reset color
+    setCounterColorByMode();
 });
 
+// Keyboard events
 document.addEventListener('keydown', (event) => {
     if (event.code === 'Space') {
         counter++;
-        if (counter < 10) {
-            displayCounter.textContent = '0' + counter;
-            displayCounter.style.color = 'red';
-        } else {
-            displayCounter.textContent = counter;
-            displayCounter.style.color = 'green';
-        }
+        updateCounterDisplay();
     }
     if (event.code === 'Escape' || event.code === 'Enter') {
         counter = 0;
         displayCounter.textContent = '00';
-        displayCounter.style.color = 'black'; // Reset color
+        setCounterColorByMode();
     }
     if (event.key.toLowerCase() === 'd') {
         document.body.classList.toggle('darkmode');
+        setCounterColorByMode();
     }
 });
+
+// Helper: Set counter color based on mode
+function setCounterColorByMode() {
+    if (document.body.classList.contains('darkmode')) {
+        displayCounter.style.color = '#fff';
+    } else {
+        displayCounter.style.color = '#111';
+    }
+}
 
 // Settings modal logic
 const settingsButton = document.getElementById('settingsButton');
@@ -65,4 +77,5 @@ settingsModal.addEventListener('click', (e) => {
 // Toggle dark mode from Uiverse switch
 uiverseSwitch.addEventListener('change', (e) => {
     document.body.classList.toggle('darkmode', e.target.checked);
+    setCounterColorByMode();
 });

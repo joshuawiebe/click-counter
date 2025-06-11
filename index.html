@@ -7,32 +7,71 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    <!-- Settings Button -->
     <button id="settingsButton" aria-label="Settings">
       <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="3"/>
         <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09A1.65 1.65 0 0 0 9 3.09V3a2 2 0 1 1 4 0v.09c0 .66.39 1.26 1 1.51h.09a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.09c.22.63.85 1.09 1.51 1.09H21a2 2 0 1 1 0 4h-.09c-.66 0-1.26.39-1.51 1z"/>
       </svg>
     </button>
+
+    <!-- Settings Modal -->
     <div id="settingsModal" class="modal">
       <div class="modal-content">
-        <input id="uiverseSwitch" type="checkbox">
-        <div class="toggle-app">
-          <div class="toggle-body">
-            <div class="toggle-circle">
-              <div class="toggle-crescent"></div>
-            </div>
-            <label for="uiverseSwitch" class="toggle-label">
-              <div class="toggle-slider"></div>
-              <div class="toggle-names">
-                <p class="light">Light</p>
-                <p class="dark">Dark</p>
+        <h2>Settings</h2>
+        <form id="settingsForm">
+          <!-- Dark Mode Toggle (Uiverse.io by witer33) -->
+          <input id="uiverseSwitch" type="checkbox" />
+          <div class="app">
+            <div class="body">
+              <div class="phone">
+                <div class="menu">
+                  <div class="time">4:20</div>
+                  <div class="icons">
+                    <div class="network"></div>
+                    <div class="battery"></div>
+                  </div>
+                </div>
+                <div class="content">
+                  <div class="circle">
+                    <div class="crescent"></div>
+                  </div>
+                  <label for="uiverseSwitch">
+                    <div class="toggle"></div>
+                    <div class="names">
+                      <p class="light">Light</p>
+                      <p class="dark">Dark</p>
+                    </div>
+                  </label>
+                </div>
               </div>
-            </label>
+            </div>
           </div>
-        </div>
-        <button id="closeModal">&times;</button>
+
+          <!-- Click Sound Setting -->
+          <label for="clickSound">Click Sound:</label>
+          <select id="clickSound" name="clickSound">
+            <option value="default">Default</option>
+            <option value="none">None</option>
+            <option value="sound1">Sound 1</option>
+            <option value="sound2">Sound 2</option>
+          </select>
+
+          <!-- Counter Format Setting -->
+          <label for="counterFormat">Counter Format:</label>
+          <select id="counterFormat" name="counterFormat">
+            <option value="default">Default</option>
+            <option value="twoDigits">Two Digits</option>
+          </select>
+
+          <button type="submit">Save Settings</button>
+        </form>
+        <p id="settingsMessage"></p>
+        <button id="closeModal" type="button">&times;</button>
       </div>
     </div>
+
+    <!-- Main Clicker UI -->
     <div class="clicker">
         <h1 id="counter">00</h1>
         <button id="clickButton">Click!</button>
