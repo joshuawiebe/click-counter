@@ -14,6 +14,23 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
+button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+  transition: color 0.2s, background 0.2s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+}
+
 /* ===========================
    Clicker UI
    =========================== */
