@@ -152,4 +152,19 @@ document.addEventListener('keydown', (event) => {
         }
         return;
     }
+    
+    if (key === 'r') {
+        counter = 0;
+        displayCounter.textContent = '00';
+        setCounterColorByMode();
+        saveCounter();
+        return;
+    }
+
+    if (key === 'c') {
+        counter = counter + 101;
+        updateCounterDisplay();
+        saveCounter();
+        return;
+    }
 });
