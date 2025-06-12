@@ -1,4 +1,5 @@
 let counter = 0;
+let CounterCounter = 1;
 const displayCounter = document.getElementById('counter');
 const counterButton = document.getElementById('clickButton');
 const resetButton = document.getElementById('resetButton');
@@ -162,7 +163,8 @@ document.addEventListener('keydown', (event) => {
     }
 
     if (key === 'c') {
-        counter = counter + 101;
+        counter = counter + (10 + CounterCounter);
+        CounterCounter++;
         updateCounterDisplay();
         saveCounter();
         return;
