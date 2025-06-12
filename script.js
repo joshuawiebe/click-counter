@@ -7,15 +7,9 @@ const settingsModal = document.getElementById('settingsModal');
 const closeModal = document.getElementById('closeModal');
 const uiverseSwitch = document.getElementById('uiverseSwitch');
 
-// --- Persistence Helpers ---
-function saveDarkModeSetting(isDark) {
-    localStorage.setItem('darkmode', isDark ? 'true' : 'false');
-}
-
-function loadDarkModeSetting() {
-    return localStorage.getItem('darkmode') === 'true';
-}
-
+// ------------------------------
+// LocalStorage Helpers
+// ------------------------------
 function saveCounter() {
     localStorage.setItem('counter', counter.toString());
 }
@@ -25,7 +19,17 @@ function loadCounter() {
     return stored ? parseInt(stored, 10) : 0;
 }
 
-// --- UI Update Helpers ---
+function saveDarkModeSetting(isDark) {
+    localStorage.setItem('darkmode', isDark ? 'true' : 'false');
+}
+
+function loadDarkModeSetting() {
+    return localStorage.getItem('darkmode') === 'true';
+}
+
+// ------------------------------
+// Counter Display
+// ------------------------------
 function updateCounterDisplay() {
     if (counter < 10) {
         displayCounter.textContent = '0' + counter;
@@ -36,6 +40,9 @@ function updateCounterDisplay() {
     }
 }
 
+// ------------------------------
+// Theme
+// ------------------------------
 function setCounterColorByMode() {
     if (document.body.classList.contains('darkmode')) {
         displayCounter.style.color = '#fff';
@@ -44,23 +51,35 @@ function setCounterColorByMode() {
     }
 }
 
-// --- Initialization ---
+function toggleDarkMode(fromSwitch = false) {
+    const isDark = document.body.classList.toggle('darkmode');
+    setCounterColorByMode();
+    saveDarkModeSetting(isDark);
+
+    if (!fromSwitch) {
+        uiverseSwitch.checked = isDark;
+    }
+}
+
+// ------------------------------
+// Initialization
+// ------------------------------
 counter = loadCounter();
-document.body.classList.toggle('darkmode', loadDarkModeSetting());
 updateCounterDisplay();
-setCounterColorByMode();
+
+document.body.classList.toggle('darkmode', loadDarkModeSetting());
 uiverseSwitch.checked = loadDarkModeSetting();
+setCounterColorByMode();
 
-// --- Event Listeners ---
-
-// Click button
+// ------------------------------
+// Button Events
+// ------------------------------
 counterButton.addEventListener('click', () => {
     counter++;
     updateCounterDisplay();
     saveCounter();
 });
 
-// Reset button
 resetButton.addEventListener('click', () => {
     counter = 0;
     displayCounter.textContent = '00';
@@ -68,29 +87,6 @@ resetButton.addEventListener('click', () => {
     saveCounter();
 });
 
-// Keyboard shortcuts
-document.addEventListener('keydown', (event) => {
-    if (event.code === 'Space') {
-        event.preventDefault();
-        counter++;
-        updateCounterDisplay();
-        saveCounter();
-    }
-    if (event.code === 'Escape' || event.code === 'Enter') {
-        counter = 0;
-        displayCounter.textContent = '00';
-        setCounterColorByMode();
-        saveCounter();
-    }
-    if (event.key.toLowerCase() === 'd') {
-        const isDark = document.body.classList.toggle('darkmode');
-        setCounterColorByMode();
-        saveDarkModeSetting(isDark);
-        uiverseSwitch.checked = isDark;
-    }
-});
-
-// Settings modal
 settingsButton.addEventListener('click', () => {
     settingsModal.classList.add('open');
     uiverseSwitch.checked = document.body.classList.contains('darkmode');
@@ -101,13 +97,59 @@ closeModal.addEventListener('click', () => {
 });
 
 settingsModal.addEventListener('click', (e) => {
-    if (e.target === settingsModal) settingsModal.classList.remove('open');
+    if (e.target === settingsModal) {
+        settingsModal.classList.remove('open');
+    }
 });
 
-// Dark mode toggle via UI switch
-uiverseSwitch.addEventListener('change', (e) => {
-    const isDark = e.target.checked;
-    document.body.classList.toggle('darkmode', isDark);
-    setCounterColorByMode();
-    saveDarkModeSetting(isDark);
+uiverseSwitch.addEventListener('change', () => {
+    toggleDarkMode(true);
+});
+
+// ------------------------------
+// Keyboard Shortcuts
+// ------------------------------
+document.addEventListener('keydown', (event) => {
+    const key = event.key.toLowerCase();
+
+    if (event.code === 'Space') {
+        event.preventDefault();
+        counter++;
+        updateCounterDisplay();
+        saveCounter();
+        return;
+    }
+
+    if (key === 'escape') {
+        if (settingsModal.classList.contains('open')) {
+            settingsModal.classList.remove('open');
+        } else {
+            counter = 0;
+            displayCounter.textContent = '00';
+            setCounterColorByMode();
+            saveCounter();
+        }
+        return;
+    }
+
+    if (key === 'enter') {
+        counter = 0;
+        displayCounter.textContent = '00';
+        setCounterColorByMode();
+        saveCounter();
+        return;
+    }
+
+    if (key === 'd') {
+        toggleDarkMode();
+        return;
+    }
+
+    if (key === 's') {
+        const isOpen = settingsModal.classList.toggle('open');
+        if (isOpen) {
+            uiverseSwitch.checked = document.body.classList.contains('darkmode');
+        }
+        return;
+    }
 });
