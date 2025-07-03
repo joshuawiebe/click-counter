@@ -1,6 +1,11 @@
 /* ===========================
    Base Styles
    =========================== */
+html, body {
+  overflow: hidden;
+  height: 100%;
+}
+
 body {
   font-family: Arial, sans-serif;
   background: #fff;
