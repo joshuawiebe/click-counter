@@ -14,13 +14,13 @@ A simple, interactive click counter for the browser. This project lets you count
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/click-counter.git
+    git clone https://github.com/joshuawiebe/click-counter.git
     cd click-counter
     ```
 
 2. **Open in your browser:**
     - Open the `index.html` file directly in your browser  
-    - Or try the [online demo](https://ferristhiel.github.io/click-counter)
+    - Or try the [online demo](https://joshuawiebe.github.io/click-counter)
 
 ## Usage
 
